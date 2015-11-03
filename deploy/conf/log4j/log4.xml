@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"	debug="false">
+
+	<!-- console -->
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}] %m%n" />
+		</layout>
+	</appender>
+
+
+
+	<!-- file c:\logs/ZeroWorks.인덱스명.log로 파일을 생성하며 파일의 MAX사이즈를 오버하면 자동적으로 10개까지 
+		증가 <appender name="file" class="org.apache.log4j.rolling.RollingFileAppender"> 
+		<rollingPolicy class="org.apache.log4j.rolling.FixedWindowRollingPolicy"> 
+		<param name="FileNamePattern" value="/logs/ZeroWorks/ZeroWorks.%i.log" /> 
+		<param name="MaxIndex" value="10" /> </rollingPolicy> <triggeringPolicy class="org.apache.log4j.rolling.SizeBasedTriggeringPolicy"> 
+		<param name="MaxFileSize" value="10000000" /> </triggeringPolicy> <layout 
+		class="org.apache.log4j.PatternLayout"> <param name="Target" value="System.out" 
+		/> <param name="ConversionPattern" value="%d %5p [%c] %m%n" /> </layout> 
+		</appender> -->
+
+
+
+	<!-- c:\logs/ZeroWorks/ZeroWorks.log.2014-01-16으로 파일을 생성하며 매일하나의 로그 파일 발생 -->
+	<appender name="dailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
+
+		<!-- ref.) attr : FileAppender + DatePattern -->
+
+		<param name="File" value="/logs/log.log" />
+		<param name="Append" value="true" />
+		<param name="encoding" value="UTF-8" />
+
+		<!-- SimpleDateFormat 을 따름. ex.) .yyyy-ww : 첫날 기준 매주마다, .yyyy-MM-dd-HH-mm 
+			: 매분마다 -->
+
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%c] %m%n" />
+		</layout>
+
+	</appender>
+
+
+<!-- 
+	<logger name="org.springframework">
+		<level value="INFO" />
+	</logger>
+ -->
+ 
+	<logger name="com.ibatis">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="java.sql">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="org.apache.log4j">
+		<level value="INFO" />
+	</logger>
+
+
+	<root>
+		<level value="DEBUG" /> <!-- 로그 찍는 레벨 -->
+		<appender-ref ref="console" /> <!-- 콘솔어펜더 이름 -->
+		<!--<appender-ref ref="file" /> 파일어펜더 이름 -->
+		<appender-ref ref="dailyRollingFile" /> <!-- 데일리어펜더 이름 -->
+	</root>
+
+</log4j:configuration>
