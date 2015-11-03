@@ -1,7 +1,7 @@
 package truecut.service.test;
 
 import de.taimos.daemon.DaemonStarter;
-import truecut.common.Service;
+import truecut.common.service.Service;
 
 public class TestService extends Service {
 

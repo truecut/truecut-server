@@ -1,4 +1,4 @@
-package truecut.common;
+package truecut.common.service;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
